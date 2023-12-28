@@ -1,7 +1,6 @@
 import React from 'react';
 
 import  FeedbackForm  from './FeedbackForm';
-import styles from './feedbackForm.module.css';
 
 export const App = () => {
   return (
