@@ -13,12 +13,13 @@ class FeedbackForm extends Component {
     };
   }
 
-  handleFeedback = type => {
-    this.setState(prevState => ({
-      ...prevState,
-      [type]: prevState[type] + 1,
-    }));
-  };
+  handleFeedback(type) {
+    this.setState(prevState => {
+      const newState = { ...prevState };
+      newState[type] = prevState[type] + 1;
+      return newState;
+    });
+  }
 
   render() {
     return (
@@ -46,19 +47,18 @@ class FeedbackForm extends Component {
           Bad
         </button>
         <h2 className={styles.title}>Statistics</h2>
-      
-          <p className={styles.text}>
-            Good: <span>{this.state.good}</span>
-          </p>
-        
-          <p className={styles.text}>
-            Neutral: <span>{this.state.neutral}</span>
-          </p>
-       
-          <p className={styles.text}>
-            Bad: <span>{this.state.bad}</span>
-          </p>
-        
+
+        <p className={styles.text}>
+          Good: <span>{this.state.good}</span>
+        </p>
+
+        <p className={styles.text}>
+          Neutral: <span>{this.state.neutral}</span>
+        </p>
+
+        <p className={styles.text}>
+          Bad: <span>{this.state.bad}</span>
+        </p>
       </div>
     );
   }
