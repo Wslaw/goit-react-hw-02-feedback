@@ -17,7 +17,7 @@ class FeedbackForm extends Component {
   }
 
   countTotalFeedback() {
-    const { good, neutral, bad } = this.state;
+    // const { good, neutral, bad } = this.state;
     const total = Object.values(this.state).reduce(
       (accum, value) => accum + value,
       0
@@ -37,7 +37,7 @@ class FeedbackForm extends Component {
   }
 
   render() {
-    const { good, neutral, bad } = this.state;
+    // const { good, neutral, bad } = this.state;
 
     const buttonElements = FeedbackForm.feedbackFormOptions.map(name => (
       <button
