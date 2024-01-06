@@ -1,42 +1,65 @@
-import React from 'react';
-import { Component } from 'react';
-
-import  FeedbackForm  from '../components/Feedback/FeedbackForm';
-
-
+import React, { Component } from 'react';
+import Section from './Feedback/Section';
+// import FeedbackForm from './feedback/FeedbackForm';
+import FeedbackOptions from './Feedback/FeedbackOptions';
+import Statistics from './Feedback/Statistics';
+import styles from './Feedback/feedbackForm.module.css';
 
 class App extends Component {
   state = {
     good: 0,
-    netural: 0,
+    neutral: 0,
     bad: 0,
   };
 
-  render() {
-    
-    return {
+  handleFeedback = option => {
+    this.setState(prevState => ({
+      [option]: prevState[option] + 1,
+    }));
+  };
 
-    }
+  render() {
+    const { good, neutral, bad } = this.state;
+    const total = good + neutral + bad;
+
+    return (
+      <div
+        style={{
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          fontSize: 20,
+        }}
+      >
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.handleFeedback}
+          />
+        </Section>
+
+        <Section title="Statistics">
+          {total > 0 ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positivePercentage={
+                total === 0 ? 0 : Math.round((good / total) * 100)
+              }
+            />
+          ) : (
+            <div className={styles.result}>
+              <p className={styles.text}>There is no feedback yet.</p>
+            </div>
+          )}
+        </Section>
+      </div>
+    );
   }
 }
 
-
 export default App;
-
-// export const App = () => {
-//   return (
-//     <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         flexDirection: 'column',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 20,
-//         // color: '#010101'
-//       }}
-//     >
-//       <FeedbackForm />
-//     </div>
-//   );
-// };
