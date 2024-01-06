@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Section from './Feedback/Section';
-// import FeedbackForm from './feedback/FeedbackForm';
 import FeedbackOptions from './Feedback/FeedbackOptions';
 import Statistics from './Feedback/Statistics';
 import styles from './Feedback/feedbackForm.module.css';
+import Notification from './Feedback/Notification';
 
 class App extends Component {
   state = {
@@ -52,8 +52,9 @@ class App extends Component {
               }
             />
           ) : (
-            <div className={styles.result}>
-              <p className={styles.text}>There is no feedback yet.</p>
+              <div className={styles.result}>
+                {<Notification message = "There is no feedback."/>}
+              {/* <p className={styles.text}>There is no feedback yet.</p> */}
             </div>
           )}
         </Section>
