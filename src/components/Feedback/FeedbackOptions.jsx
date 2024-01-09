@@ -11,11 +11,25 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
           type="button"
           className={styles.btn}
         >
-          {option.charAt(0).toUpperCase() + option.slice(1)}
+          {/* {getOptionIcon(option)} */}
+          {option}
         </button>
       ))}
     </div>
   );
+};
+
+const getOptionIcon = option => {
+  switch (option) {
+    case 'good':
+      return '👍'; 
+    case 'neutral':
+      return '😐'; 
+    case 'bad':
+      return '👎'; 
+    default:
+      return option; 
+  }
 };
 
 export default FeedbackOptions;

@@ -18,9 +18,18 @@ class App extends Component {
     }));
   };
 
+  countTotalFeedback = ({ good, neutral, bad })=>{
+    return good + neutral + bad;
+  }
+  countPositiveFeedbackPercentage = ({good, total}) => {
+    return total === 0 ? 0 : Math.round((good / total) * 100);
+
+}
+
   render() {
     const { good, neutral, bad } = this.state;
-    const total = good + neutral + bad;
+    const total = this.countTotalFeedback(this.state);
+    const countPositiveFeedbackPercentage = this.countPositiveFeedbackPercentage({good, total})
 
     return (
       <div
@@ -47,13 +56,11 @@ class App extends Component {
               neutral={neutral}
               bad={bad}
               total={total}
-              positivePercentage={
-                total === 0 ? 0 : Math.round((good / total) * 100)
-              }
+              positivePercentage={countPositiveFeedbackPercentage}
             />
           ) : (
-              <div className={styles.result}>
-                {<Notification message = "There is no feedback."/>}
+            <div className={styles.result}>
+              {<Notification message="There is no feedback." />}
               {/* <p className={styles.text}>There is no feedback yet.</p> */}
             </div>
           )}
