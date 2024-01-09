@@ -11,7 +11,6 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
           type="button"
           className={styles.btn}
         >
-          {/* {getOptionIcon(option)} */}
           {option}
         </button>
       ))}
@@ -19,17 +18,5 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   );
 };
 
-const getOptionIcon = option => {
-  switch (option) {
-    case 'good':
-      return '👍'; 
-    case 'neutral':
-      return '😐'; 
-    case 'bad':
-      return '👎'; 
-    default:
-      return option; 
-  }
-};
 
 export default FeedbackOptions;
